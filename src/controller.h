@@ -3,6 +3,7 @@
 #include <FastLED.h>
 #include "settings.h"
 #include "pattern.h"
+#include "enum.h"
 
 class LEDController
 {

@@ -17,7 +17,7 @@ struct PatternSettings
     uint8_t        PatternBarLength;
 };
 
-class Pattern
+class Pattern : public Palette
 {
 public:
   void setSettings(const PatternSettings&);

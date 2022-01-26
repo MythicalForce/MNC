@@ -9,14 +9,16 @@ struct PaletteSettings
     E_Palette      PaletteSelected;
     CRGBPalette256 PaletteCurrent;
     TBlendType     PaletteBlend;
+    unsigned long  PalettePosition; // added this?
 };
 
 class Palette
 {
 public:
   void setSettings(const PaletteSettings&);
+  CRGB PaletteMode(CLEDController& controller, int Index, int Brightness = 127 );
 
 protected:
-  PaletteSettings settings;  
+  PaletteSettings settings;
   unsigned long time;
 };
