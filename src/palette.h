@@ -9,7 +9,7 @@ struct PaletteSettings
     E_Palette      PaletteSelected;
     CRGBPalette256 PaletteCurrent;
     TBlendType     PaletteBlend;
-    unsigned long  PalettePosition; // added this?
+    unsigned long  PalettePosition;
 };
 
 class Palette

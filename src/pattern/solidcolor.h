@@ -3,7 +3,8 @@
 
 class Solidcolor : public Pattern
 {
-	virtual void draw(CLEDController& c, const Palette&)
+public:
+	virtual void draw(CLEDController& c)
 	{
         CRGB* leds = c.leds();
         int size = c.size();
@@ -11,12 +12,7 @@ class Solidcolor : public Pattern
 
         for(float i = 0; i < size; i++)
         {   
-            DrawPixels(i, 1, PaletteMode(c, i));
+            DrawPixels(c, i, 1, PaletteMode(c, i));
         }
-    }
-
-	virtual void update()
-	{
-        
     }
 };

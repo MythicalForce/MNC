@@ -2,7 +2,7 @@
 
 #include <debugger.h>
 
-#define DEVICE STUDIOLIGHTS                                 // What device to upload to
+#define DEVICE TESTMACHINE                                 // What device to upload to
 
 #define FLASH_VERSION 0001                                  // Upate ONLY this to increment the version number
 

@@ -81,6 +81,8 @@ void IRAM_ATTR SocketServerTaskEntry(void *)
     }
 }
 
+Solidcolor solidcolor;
+
 void IRAM_ATTR DrawLoopTaskEntry(void *)
 {
   for (;;)
@@ -88,6 +90,9 @@ void IRAM_ATTR DrawLoopTaskEntry(void *)
     TIMERG0.wdt_wprotect=TIMG_WDT_WKEY_VALUE;
     TIMERG0.wdt_feed=1;
     TIMERG0.wdt_wprotect=0;
+
+    solidcolor.draw(*strand1_cled);
+    solidcolor.Pattern::update(*strand1_cled, 70);
   }
 }
 
