@@ -11,9 +11,16 @@ struct PaletteSettings
     E_Palette      PaletteSelected;
     CRGBPalette256 PaletteCurrent;
     TBlendType     PaletteBlend;
-    unsigned long  PalettePosition;
+    float          PalettePosition;
+    unsigned long  PaletteUpdate;
 
-    PaletteSettings() : PaletteDelay(70), PaletteDirection(FORWARD), PaletteMode(ONECOLOR), PalettePicker(0), PaletteSelected(palSUNSETREAL), PaletteBlend(LINEARBLEND), PalettePosition(0)
+    PaletteSettings() : PaletteDelay(70), 
+                        PaletteDirection(FORWARD), 
+                        PaletteMode(ONECOLOR), 
+                        PalettePicker(0), 
+                        PaletteSelected(palSUNSETREAL), 
+                        PaletteBlend(LINEARBLEND), 
+                        PalettePosition(0)
     {
 
     }

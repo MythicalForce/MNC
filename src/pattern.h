@@ -15,11 +15,20 @@ struct PatternSettings
     uint8_t        PatternFadeAmount;
     E_WrapAround   PatternWrapAround;
     uint8_t        PatternBarLength;
-    unsigned long  PatternPosition;
+    float          PatternPosition;
+    unsigned long  PatternUpdate;
 
-    PatternSettings() : PatternBrightness(64), PatternActive(CYLON), PatternDirection(FORWARD), PatternDelay(127), PatternTail(DUST), PatternFadeAmount(128), PatternWrapAround(YES), PatternBarLength(4), PatternPosition(0)
+    PatternSettings() : PatternBrightness(64), 
+                        PatternActive(CYLON), 
+                        PatternDirection(FORWARD), 
+                        PatternDelay(127), 
+                        PatternTail(DUST), 
+                        PatternFadeAmount(128), 
+                        PatternWrapAround(YES), 
+                        PatternBarLength(4), 
+                        PatternPosition(0.0f)
     {
-      
+
     }
 };
 

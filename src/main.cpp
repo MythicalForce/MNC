@@ -94,6 +94,8 @@ void IRAM_ATTR DrawLoopTaskEntry(void *)
     solidcolor.draw(*strand1_cled);
     solidcolor.Pattern::update(*strand1_cled, 70);
     solidcolor.Palette::ChangePalette();
+    strand1_cled->show(_leds1, strand1_cled->size(), 255);
+    //FastLED.show();
   }
 }
 
