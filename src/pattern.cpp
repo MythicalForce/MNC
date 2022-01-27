@@ -2,7 +2,7 @@
 
 void Pattern::update(CLEDController& c, unsigned long)
 {
-    CRGB* leds = c.leds();
+    //CRGB* leds = c.leds();
     int size = c.size();
     if ( settings.PatternWrapAround == YES && settings.PatternDirection == FORWARD )
     {

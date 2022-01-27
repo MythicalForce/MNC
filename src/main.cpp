@@ -93,6 +93,7 @@ void IRAM_ATTR DrawLoopTaskEntry(void *)
 
     solidcolor.draw(*strand1_cled);
     solidcolor.Pattern::update(*strand1_cled, 70);
+    solidcolor.Palette::ChangePalette();
   }
 }
 

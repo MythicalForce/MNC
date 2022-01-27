@@ -1,3 +1,5 @@
+#pragma once
+
 #include "pattern.h"
 #include "draw.h"
 
