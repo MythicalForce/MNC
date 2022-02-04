@@ -3,7 +3,7 @@
 #include "pattern.h"
 #include "draw.h"
 
-class Solidcolor : public Pattern
+class Twinkle : public Pattern
 {
 public:
 	virtual void draw(CLEDController& c)
@@ -11,12 +11,9 @@ public:
         CRGB* leds = c.leds();
         int size = c.size();
 
-        fadeToBlackBy(leds, size, 255);
-
-        for(float i = 0; i < size; i++)
-        {   
-            DrawPixels(c, i, 1, PaletteMode(c, i));
-        }
+        fadeToBlackBy(leds, size, settings.PatternFadeAmount);
+        int i = random8(0, size);
+        DrawPixels(c, i, 1, PaletteMode(c, i));
     }
 
     virtual void update(CLEDController& c)

@@ -111,3 +111,8 @@ enum E_LEDBlinkRate
     CONNECTING = 1000,
     SETUPMODE = 1000
 };
+enum E_ColorUse
+{
+    RANDOM,
+    PALETTE
+};

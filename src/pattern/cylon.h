@@ -3,7 +3,7 @@
 #include "pattern.h"
 #include "draw.h"
 
-class TheaterChase : public Pattern
+class Cylon : public Pattern
 {
 public:
 	virtual void draw(CLEDController& c)
@@ -11,31 +11,33 @@ public:
         CRGB* leds = c.leds();
         int size = c.size();
 
-        fadeToBlackBy(leds, size, 255);
-
-        for (float i = settings.PatternPosition; i < size; i+= 3)
-        {
-            DrawPixels(c, i, 1, PaletteMode(c, i));
+        for ( float i = 0; i < settings.PatternBarLength; i++ )
+        {  
+            float pi = settings.PatternPosition + i;
+            DrawPixels(c, pi, 1, PaletteMode(c, pi ) );
         }
+        applyTailEffect(leds, size);
     }
 
     virtual void update(CLEDController& c)
     {
+        int size = c.size();
+
         if ( millis() - settings.PatternUpdate >= settings.PatternDelay )
         {
             if ( settings.PatternWrapAround == YES && settings.PatternDirection == FORWARD )
             {
                 settings.PatternPosition += 0.1f;
 
-                if ( settings.PatternPosition >= 3 )
+                if ( settings.PatternPosition >= size )
                     settings.PatternPosition = 0.0f;
             }
             else if ( settings.PatternWrapAround == YES && settings.PatternDirection == REVERSE )
             {
                 settings.PatternPosition  -= 0.1f;
 
-                if ( settings.PatternPosition <= 0 )
-                    settings.PatternPosition = 3;
+                if ( settings.PatternPosition < 0 )
+                    settings.PatternPosition = size;
             }
             settings.PatternUpdate = millis();
         }

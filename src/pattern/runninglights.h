@@ -3,7 +3,7 @@
 #include "pattern.h"
 #include "draw.h"
 
-class TheaterChase : public Pattern
+class RunningLights : public Pattern
 {
 public:
 	virtual void draw(CLEDController& c)
@@ -13,21 +13,25 @@ public:
 
         fadeToBlackBy(leds, size, 255);
 
-        for (float i = settings.PatternPosition; i < size; i+= 3)
+        for (float i = 0; i < size; i++)
         {
-            DrawPixels(c, i, 1, PaletteMode(c, i));
+            float a = 2 * (i + settings.PatternPosition) * 255 / (size - 1);
+            float ni = (size - 1) - i;
+            DrawPixels(c,ni, 1, PaletteMode(c, ni, sin8(a) * settings.PatternBrightness / 255));
         }
     }
 
     virtual void update(CLEDController& c)
     {
+        int size = c.size();
+
         if ( millis() - settings.PatternUpdate >= settings.PatternDelay )
         {
             if ( settings.PatternWrapAround == YES && settings.PatternDirection == FORWARD )
             {
                 settings.PatternPosition += 0.1f;
 
-                if ( settings.PatternPosition >= 3 )
+                if ( settings.PatternPosition >= size )
                     settings.PatternPosition = 0.0f;
             }
             else if ( settings.PatternWrapAround == YES && settings.PatternDirection == REVERSE )
@@ -35,7 +39,7 @@ public:
                 settings.PatternPosition  -= 0.1f;
 
                 if ( settings.PatternPosition <= 0 )
-                    settings.PatternPosition = 3;
+                    settings.PatternPosition = size;
             }
             settings.PatternUpdate = millis();
         }

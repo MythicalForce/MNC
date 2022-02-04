@@ -16,7 +16,7 @@ struct PaletteSettings
 
     PaletteSettings() : PaletteDelay(70), 
                         PaletteDirection(FORWARD), 
-                        PaletteMode(ONECOLOR), 
+                        PaletteMode(FULLPALETTE), 
                         PalettePicker(0), 
                         PaletteSelected(palSUNSETREAL), 
                         PaletteBlend(LINEARBLEND), 
