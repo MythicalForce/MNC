@@ -11,38 +11,36 @@ public:
         CRGB* leds = c.leds();
         int size = c.size();
 
-        const uint16_t TotalLength = size;
+        const uint16_t TotalLength = size-1;
 
         static uint16_t end = TotalLength;
-        static int block = 0;
+        static int block = size;
         static CRGB color = 0;
-        static int i = 0;  
 
         // reset after each full sequence
-        if ( block >= TotalLength / settings.PatternBarLength )
+        if ( block >= TotalLength / PatternBarLength )
         {
             block = 0;
             end = TotalLength;
-            if ( settings.PatternColorUse == RANDOM )
+            if ( PatternColorUse == RANDOM )
                 color = CHSV( random( 0, 255 ), 255, 255 );
-            i = 0;
+            PatternPosition = 0.0f;
         }
-
-        if ( settings.PatternColorUse == RANDOM )
-            leds[ i ] = color;
+        if ( PatternColorUse == RANDOM )
+            DrawPixels(c, PatternPosition, 1, color );
         else
-            leds[ i ] = PaletteMode(c, i );
+            DrawPixels(c, PatternPosition, 1, PaletteMode( c, PatternPosition, PatternBrightness ) );
 
-        if ( i >= settings.PatternBarLength )
+        if ( PatternPosition >= PatternBarLength )
         {
-            leds[ i - settings.PatternBarLength ].fadeToBlackBy( 255 );
+            leds[ (int)PatternPosition - PatternBarLength ].fadeToBlackBy( 255 );
         }
 
-        if ( ++i >= end )
+        if ( PatternPosition >= end )
         {
-            i = 0;
-            end -= settings.PatternBarLength;
-            if ( settings.PatternColorUse == RANDOM )
+            PatternPosition = 0.0f;
+            end -= PatternBarLength;
+            if ( PatternColorUse == RANDOM )
                 color = CHSV( random( 0, 255 ), 255, 255 );
             block++;
         }
@@ -50,25 +48,17 @@ public:
 
     virtual void update(CLEDController& c)
     {
-        int size = c.size();
-
-        if ( millis() - settings.PatternUpdate >= settings.PatternDelay )
+        if ( millis() - PatternUpdate >= PatternDelay )
         {
-            if ( settings.PatternWrapAround == YES && settings.PatternDirection == FORWARD )
+            if ( PatternWrapAround == YES && PatternDirection == FORWARD )
             {
-                settings.PatternPosition += 0.1f;
-
-                if ( settings.PatternPosition >= size )
-                    settings.PatternPosition = 0.0f;
+                PatternPosition += 0.1f;
             }
-            else if ( settings.PatternWrapAround == YES && settings.PatternDirection == REVERSE )
+            else if ( PatternWrapAround == YES && PatternDirection == REVERSE )
             {
-                settings.PatternPosition  -= 0.1f;
-
-                if ( settings.PatternPosition <= 0 )
-                    settings.PatternPosition = size;
+                PatternPosition  -= 0.1f;
             }
-            settings.PatternUpdate = millis();
+            PatternUpdate = millis();
         }
     }
 };

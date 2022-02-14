@@ -16,7 +16,7 @@ struct PaletteSettings
 
     PaletteSettings() : PaletteDelay(70), 
                         PaletteDirection(FORWARD), 
-                        PaletteMode(FULLPALETTE), 
+                        PaletteMode(ONECOLOR), 
                         PalettePicker(0), 
                         PaletteSelected(palSUNSETREAL), 
                         PaletteBlend(LINEARBLEND), 
@@ -26,10 +26,10 @@ struct PaletteSettings
     }
 };
 
-class Palette
+class Palette : public Settings
 {
 public:
-  void setSettings(const PaletteSettings&);
+  void setSettings(const Settings& s);
   CRGB PaletteMode(CLEDController& controller, int Index, int Brightness = 127 );
   void ChangePalette();
 

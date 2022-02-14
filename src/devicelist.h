@@ -19,7 +19,7 @@ static constexpr DeviceConfig Config[] =
     { {70,70,70,70,70,70,70,70},  "The Sun",       "ESP32", "STRIP", "thesun" },
     { {19,18,10,10,10,10,19,18},  "Voodoo Mask",   "ESP32", "STRIP", "voodoomask" },
     { {4,4,4,4,4,4,4,4},          "Små Sure",      "ESP32", "STRIP", "smasure" },
-    { {96,96,96,96,96,96,96,96},  "Test Device",   "ESP32", "STRIP", "testmachine" },
+    { {96,96,96,96,96,96,24,96},  "Test Device",   "ESP32", "STRIP", "testmachine" },
     { {186,186,186,186,186,186,186,186}, "Computer Desk", "ESP32", "STRIP", "computerdesk" },
     { {72,32,96,32,32,32,32,32},  "HaalandsMarka", "ESP32", "STRIP", "haalandsmarka" },
     { {45,4,4,4,4,4,4,4},         "Røyk Maskin",   "ESP32", "STRIP", "smokemachine" }

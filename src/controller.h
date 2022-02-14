@@ -9,7 +9,7 @@ class LEDController
 {
 public:
   LEDController(CLEDController& c);
-  void updatePatternSettings(const PatternSettings& s);
+  void updatePatternSettings(CLEDController& c, const Settings& s);
 
 private:
   CLEDController& _cled;

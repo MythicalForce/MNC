@@ -16,7 +16,7 @@ public:
 
         for (float i = 0; i < balls; i++)
         {
-            DrawPixels(c, beatsin16(i + 7, 0, size - 1), 1, CHSV(dothue, 255, settings.PatternBrightness));
+            DrawPixels(c, beatsin16(i + 7, 0, size - 1), 1, CHSV(dothue, 255, PatternBrightness));
             dothue += 32;
         }
         applyTailEffect(leds, size);

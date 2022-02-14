@@ -6,6 +6,8 @@
 #include "ArduinoJson.h"
 #include "controller.h"
 
+extern std::vector<Settings> settings;
+
 WebSocketsServer webSocket = WebSocketsServer( 80 );
 
 namespace websocket
@@ -56,15 +58,15 @@ namespace websocket
           outData["devicetype"]        = "ESP32";
           outData["devicename"]        = "Test Machine";
           outData["ledtype"]           = "STRIP";
-          //outData["stripnumled"] 
-          outData["patternActive"]     = 1;
-          outData["brightness"]        = 127;
-          outData["patternDelay"]      = 70;
-          //outData["patternSpacing"]
-          outData["patternDirection"]  = 1;
-          outData["patternTail"]       = 1;
-          outData["patternFadeAmount"] = 70;
-          outData["patternWrapAround"] = 0;
+          outData["stripnumled"]       = settings[selectedstrip].StripNumLed;
+          outData["patternActive"]     = settings[selectedstrip].PatternActive;
+          outData["brightness"]        = settings[selectedstrip].PatternBrightness;
+          outData["patternDelay"]      = settings[selectedstrip].PatternDelay;
+          outData["PatternBarLength"]  = settings[selectedstrip].PatternBarLength;
+          outData["patternDirection"]  = settings[selectedstrip].PatternDirection;
+          outData["patternTail"]       = settings[selectedstrip].PatternTail;
+          outData["patternFadeAmount"] = settings[selectedstrip].PatternFadeAmount;
+          outData["patternWrapAround"] = settings[selectedstrip].PatternWrapAround;
           outData["colorPicker"]       = 0;
           outData["paletteMode"]       = ONECOLOR;
           outData["selectedPalette"]   = palSUNSETREAL;
@@ -86,6 +88,67 @@ namespace websocket
           serializeJson(infoData, infoJsonData);
           Serial.println(infoJsonData);
           webSocket.sendTXT(0, infoJsonData);
+        }
+        if ( inData.containsKey("selectedstrip") )
+        {
+          selectedstrip = inData["selectedstrip"];
+        }
+        if ( inData.containsKey("brightness") )
+        {
+          settings[selectedstrip].PatternBrightness = inData["brightness"];
+        }
+        if ( inData.containsKey("patternActive") )
+        {
+          settings[selectedstrip].PatternActive = (E_Patterns)inData["patternActive"];
+        }
+        if ( inData.containsKey("patternDirection") )
+        {
+          settings[selectedstrip].PatternDirection = (E_Direction)inData["patternDirection"];
+        }
+        if ( inData.containsKey("patternDelay") )
+        {
+          settings[selectedstrip].PatternDelay = (int)inData["patternDelay"];
+        }
+        if ( inData.containsKey("PatternBarLength") )
+        {
+          settings[selectedstrip].PatternBarLength = inData["PatternBarLength"];
+        }
+        if ( inData.containsKey("patternTail") )
+        {
+          settings[selectedstrip].PatternTail = (E_Tail)inData["patternTail"];
+        }
+        if ( inData.containsKey("patternFadeAmount") )
+        {
+          settings[selectedstrip].PatternFadeAmount = (int)inData["patternFadeAmount"];
+        }
+        if ( inData.containsKey("patternWrapAround") )
+        {
+          settings[selectedstrip].PatternWrapAround = (E_WrapAround)inData["patternWrapAround"];
+        }
+        
+        if ( inData.containsKey("paletteActive") )
+        {
+          settings[selectedstrip].PaletteSelected = (E_Palette)inData["paletteActive"];
+        }
+        if ( inData.containsKey("paletteSpeed") )
+        {
+          settings[selectedstrip].PaletteDelay = (int)inData["paletteSpeed"];
+        }
+        if ( inData.containsKey("paletteDirection") )
+        {
+          settings[selectedstrip].PaletteDirection = (E_Direction)inData["paletteDirection"];
+        }
+        if ( inData.containsKey("paletteMode") )
+        {
+          settings[selectedstrip].PaletteBlendMode = (E_PaletteMode)inData["paletteMode"];
+        }
+        if ( inData.containsKey("colorPicker") )
+        {
+          settings[selectedstrip].PalettePicker = (int)inData["colorPicker"];
+        }
+        if ( inData.containsKey("paletteBlendMode") )
+        {
+          settings[selectedstrip].PaletteBlend = (TBlendType)inData["paletteBlendMode"];
         }
       break;
       case WStype_FRAGMENT_TEXT_START:

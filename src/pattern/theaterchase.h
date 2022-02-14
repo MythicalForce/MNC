@@ -13,31 +13,31 @@ public:
 
         fadeToBlackBy(leds, size, 255);
 
-        for (float i = settings.PatternPosition; i < size; i+= 3)
+        for (float i = PatternPosition; i < size; i+= 3)
         {
-            DrawPixels(c, i, 1, PaletteMode(c, i));
+            DrawPixels(c, i, 1, PaletteMode(c, i, PatternBrightness));
         }
     }
 
     virtual void update(CLEDController& c)
     {
-        if ( millis() - settings.PatternUpdate >= settings.PatternDelay )
+        if ( millis() - PatternUpdate >= PatternDelay )
         {
-            if ( settings.PatternWrapAround == YES && settings.PatternDirection == FORWARD )
+            if ( PatternWrapAround == YES && PatternDirection == FORWARD )
             {
-                settings.PatternPosition += 0.1f;
+                PatternPosition += 0.1f;
 
-                if ( settings.PatternPosition >= 3 )
-                    settings.PatternPosition = 0.0f;
+                if ( PatternPosition >= 3 )
+                    PatternPosition = 0.0f;
             }
-            else if ( settings.PatternWrapAround == YES && settings.PatternDirection == REVERSE )
+            else if ( PatternWrapAround == YES && PatternDirection == REVERSE )
             {
-                settings.PatternPosition  -= 0.1f;
+                PatternPosition  -= 0.1f;
 
-                if ( settings.PatternPosition <= 0 )
-                    settings.PatternPosition = 3;
+                if ( PatternPosition <= 0 )
+                    PatternPosition = 3;
             }
-            settings.PatternUpdate = millis();
+            PatternUpdate = millis();
         }
     }
 };

@@ -15,9 +15,9 @@ public:
 
         for (float i = 0; i < size; i++)
         {
-            float a = 2 * (i + settings.PatternPosition) * 255 / (size - 1);
+            float a = 2 * (i + PatternPosition) * 255 / (size - 1);
             float ni = (size - 1) - i;
-            DrawPixels(c,ni, 1, PaletteMode(c, ni, sin8(a) * settings.PatternBrightness / 255));
+            DrawPixels(c,ni, 1, PaletteMode(c, ni, sin8(a) * PatternBrightness / 255));
         }
     }
 
@@ -25,23 +25,23 @@ public:
     {
         int size = c.size();
 
-        if ( millis() - settings.PatternUpdate >= settings.PatternDelay )
+        if ( millis() - PatternUpdate >= PatternDelay )
         {
-            if ( settings.PatternWrapAround == YES && settings.PatternDirection == FORWARD )
+            if ( PatternWrapAround == YES && PatternDirection == FORWARD )
             {
-                settings.PatternPosition += 0.1f;
+                PatternPosition += 0.1f;
 
-                if ( settings.PatternPosition >= size )
-                    settings.PatternPosition = 0.0f;
+                if ( PatternPosition >= size )
+                    PatternPosition = 0.0f;
             }
-            else if ( settings.PatternWrapAround == YES && settings.PatternDirection == REVERSE )
+            else if ( PatternWrapAround == YES && PatternDirection == REVERSE )
             {
-                settings.PatternPosition  -= 0.1f;
+                PatternPosition  -= 0.1f;
 
-                if ( settings.PatternPosition <= 0 )
-                    settings.PatternPosition = size;
+                if ( PatternPosition <= 0 )
+                    PatternPosition = size;
             }
-            settings.PatternUpdate = millis();
+            PatternUpdate = millis();
         }
     }
 };

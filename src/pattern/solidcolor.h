@@ -15,7 +15,7 @@ public:
 
         for(float i = 0; i < size; i++)
         {   
-            DrawPixels(c, i, 1, PaletteMode(c, i));
+            DrawPixels(c, i, 1, PaletteMode(c, i, PatternBrightness));
         }
     }
 
