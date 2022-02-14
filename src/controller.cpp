@@ -9,16 +9,16 @@
 #include "pattern/twinkle.h"
 #include "pattern/colorstacking.h"
 
-Solidcolor *solidcolor       = new Solidcolor;
-TheaterChase *theaterchase   = new TheaterChase;
-Juggle *juggle               = new Juggle;
-RunningLights *runninglights = new RunningLights;
-Cylon *cylon                 = new Cylon;
-Mitosis *mitosis             = new Mitosis;
-Twinkle *twinkle             = new Twinkle;
-ColorStacking *colorstacking = new ColorStacking;
+Solidcolor solidcolor;
+TheaterChase theaterchase;
+Juggle juggle;
+RunningLights runninglights;
+Cylon cylon;
+Mitosis mitosis;
+Twinkle twinkle;
+ColorStacking colorstacking;
 
-Pattern *currentPattern[] = { solidcolor, theaterchase, juggle, runninglights, cylon, mitosis, twinkle, colorstacking };
+Pattern *currentPattern[] = { &solidcolor, &theaterchase, &juggle, &runninglights, &cylon, &mitosis, &twinkle, &colorstacking };
 
 LEDController::LEDController(CLEDController& c) : _cled(c) { }
 
