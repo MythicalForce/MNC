@@ -8,9 +8,5 @@
 class LEDController
 {
 public:
-  LEDController(CLEDController& c);
   void updatePatternSettings(CLEDController& c, const Settings& s);
-
-private:
-  CLEDController& _cled;
 };

@@ -20,8 +20,6 @@ ColorStacking colorstacking;
 
 Pattern *currentPattern[] = { &solidcolor, &theaterchase, &juggle, &runninglights, &cylon, &mitosis, &twinkle, &colorstacking };
 
-LEDController::LEDController(CLEDController& c) : _cled(c) { }
-
 void LEDController::updatePatternSettings(CLEDController& c, const Settings& s)
 {
   currentPattern[s.PatternActive]->setSettings(s);

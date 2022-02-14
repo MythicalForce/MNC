@@ -30,49 +30,49 @@ std::vector<Settings> settings { {}, {}, {}, {}, {}, {}, {}, {}, {} };
 #if NUM_CHANNELS >= 1
   CRGB _leds0[Config[DEVICE].NUMLED[0]];
   CLEDController *strand1_cled;
-  LEDController strand1(*strand1_cled);
+  LEDController strand1;
 #endif
 
 #if NUM_CHANNELS >= 2
   CRGB _leds1[Config[DEVICE].NUMLED[1]];
   CLEDController *strand2_cled;
-  LEDController strand2(*strand2_cled);
+  LEDController strand2;
 #endif
 
 #if NUM_CHANNELS >= 3
   CRGB _leds2[Config[DEVICE].NUMLED[2]];
   CLEDController *strand3_cled;
-  LEDController strand3(*strand3_cled);
+  LEDController strand3;
 #endif
 
 #if NUM_CHANNELS >= 4
   CRGB _leds3[Config[DEVICE].NUMLED[3]];
   CLEDController *strand4_cled;
-  LEDController strand4(*strand4_cled);
+  LEDController strand4;
 #endif
 
 #if NUM_CHANNELS >= 5
   CRGB _leds4[Config[DEVICE].NUMLED[4]];
   CLEDController *strand5_cled;
-  LEDController strand5(*strand5_cled);
+  LEDController strand5;
 #endif
 
 #if NUM_CHANNELS >= 6
   CRGB _leds5[Config[DEVICE].NUMLED[5]];
   CLEDController *strand6_cled;
-  LEDController strand6(*strand6_cled);
+  LEDController strand6;
 #endif
 
 #if NUM_CHANNELS >= 7
   CRGB _leds6[Config[DEVICE].NUMLED[6]];
   CLEDController *strand7_cled;
-  LEDController strand7(*strand7_cled);
+  LEDController strand7;
 #endif
 
 #if NUM_CHANNELS >= 8
   CRGB _leds7[Config[DEVICE].NUMLED[7]];
   CLEDController *strand8_cled;
-  LEDController strand8(*strand8_cled);
+  LEDController strand8;
 #endif
 
 void IRAM_ATTR SocketServerTaskEntry(void *)
